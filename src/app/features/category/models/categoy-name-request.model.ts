@@ -1,3 +1,3 @@
 export interface CategoryNameRequest {
-    id: string;
+    name: string;
 }

@@ -18,6 +18,10 @@
             </ul>
           </li>
         </ul>
+        <form class="d-flex" role="search" (ngSubmit)="onFormSubmit()">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="model.name">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>
