@@ -13,8 +13,8 @@ export class CategoryService {
 
   }
 
-  getCategories(): Observable<void> {
-    return this._http.get<void>('https://localhost:44354/api/DevBlog');
+  getCategories(): Observable<AddCategoryRequest[]> {
+    return this._http.get<AddCategoryRequest[]>('https://localhost:44354/api/DevBlog');
   }
 
   getCategory(model: CategoryNameRequest): Observable<void> {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { Subscription } from 'rxjs';
@@ -11,8 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.css'
 })
-export class CategoryListComponent implements OnInit, OnDestroy{
+export class CategoryListComponent implements OnInit{
 
+  categories!: WritableSignal<any[]>;
   private addCategorySubscription?: Subscription;
   
   constructor(
@@ -23,8 +24,9 @@ export class CategoryListComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.addCategorySubscription = this._categoryService.getCategories()
     .subscribe({
-      next: (response) => {
-        console.log("Successful call", response);
+      next: (data) => {
+        this.categories.set(data);
+        console.log("Successful call", data);
       },
       error: (error) => {
         console.log("Failed to add new category", error);

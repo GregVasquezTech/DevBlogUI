@@ -33,7 +33,6 @@ export class NavbarComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.onFormSubmit();
   }
 
   onFormSubmit(): void {

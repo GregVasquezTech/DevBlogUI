@@ -10,7 +10,7 @@ export const routes: Routes = [
         path: 'admin/categories', component: CategoryListComponent
     },
     {
-        path: 'admin/categories/get', component: GetCategoryComponent
+        path: 'admin/categories/:categoryName', component: GetCategoryComponent
     },
     {
         path: 'admin/categories/add', component: AddCategoryComponent
