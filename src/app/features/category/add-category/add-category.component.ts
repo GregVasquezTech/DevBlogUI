@@ -31,10 +31,10 @@ export class AddCategoryComponent implements OnDestroy{
     this._addCategorySubscription = this._categoryService.addCategory(this.model)
     .subscribe({
       next: (response) => {
-        console.log("Successful call", response);
+        console.log("Successful call: ", response);
       },
       error: (error) => {
-        console.log("Failed to add new category", error);
+        console.log("Failed to add new category: ", error);
       }
     });
   }

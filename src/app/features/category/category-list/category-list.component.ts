@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { Subscription } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { CategoryResponse } from '../models/Responses/category-response.model';
 
@@ -28,11 +27,10 @@ export class CategoryListComponent implements OnInit{
     .subscribe({
       next: (data) => {
         this.modelResponse = data;
-        console.log("Successful call", data);
-        console.log("successfully added to array:", this.modelResponse);
+        console.log("ModelResponse: ", this.modelResponse);
       },
       error: (error) => {
-        console.log("Failed to add new category", error);
+        console.log("Failed to get categories: ", error);
       }
     });
   }

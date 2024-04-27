@@ -28,13 +28,13 @@ export class GetCategoryComponent implements OnInit, OnDestroy{
   };
 
   ngOnInit(): void {
-    this._categoryService.getCategory(this.modelResponse)
+    this._categoryService.getCategory(this.modelRequest)
     .subscribe({
       next: (response) => {
         this.modelResponse = response;
-        console.log("Get Category succeded", response);
+        console.log("Get Category succeded: ", response);
     },
-      error: (error) => console.log("Failed to get category", error)
+      error: (error) => console.log("Failed to get category: ", error)
     });
   };
   
