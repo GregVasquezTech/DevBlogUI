@@ -4,25 +4,16 @@
 
     <div class="d-flex justify-content-between mt-3
     ">
-        <a [routerLink]="['/admin/categories/get']" class="btn btn-primary">Get Category</a>
-
         <a [routerLink]="['/admin/categories/add']" class="btn btn-secondary">Add Category</a>
 
-
         <a [routerLink]="['/admin/categories/update']" class="btn btn-success">Update Category</a>
-
-
 
         <a [routerLink]="['/admin/categories/delete']" class="btn btn-danger">Delete Category</a>
     </div>
 
     <div class="mt-3">
-        <ul class="list-group">
-            <li class="list-group-item active" aria-current="true">An active item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
+        <ul class="list-group" *ngFor="let category of modelResponse">
+            <li class="list-group-item">Name: {{ category.name }} |  UrlHandle: {{ category.urlHandle }}</li>
           </ul>
     </div>
 

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
-import { CategoryNameRequest } from '../models/categoy-name-request.model';
+import { CategoryNameRequest } from '../models/Requests/categoy-name-request.model';
+import { CategoryResponse } from '../models/Responses/category-response.model';
 
 @Component({
   selector: 'app-get-category',
@@ -11,20 +12,28 @@ import { CategoryNameRequest } from '../models/categoy-name-request.model';
 })
 export class GetCategoryComponent implements OnInit, OnDestroy{
 
-  model: CategoryNameRequest;
+  modelRequest: CategoryNameRequest;
+  modelResponse: CategoryResponse;
 
   constructor (
     private _categoryService: CategoryService
   ) {
-    this.model = {
+    this.modelRequest = {
       name: ''
     };
+    this,this.modelResponse = {
+      name: '',
+      urlHandle: ''
+    }
   };
 
   ngOnInit(): void {
-    this._categoryService.getCategory(this.model)
+    this._categoryService.getCategory(this.modelResponse)
     .subscribe({
-      next: (response) => console.log("Get Category succeded", response),
+      next: (response) => {
+        this.modelResponse = response;
+        console.log("Get Category succeded", response);
+    },
       error: (error) => console.log("Failed to get category", error)
     });
   };

@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AddCategoryRequest } from '../models/add-category-request.model';
+import { AddCategoryRequest } from '../models/Requests/add-category-request.model';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryService } from '../services/category.service';
 import { Subscription } from 'rxjs';

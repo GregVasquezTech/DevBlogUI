@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CategoryNameRequest } from '../../../features/category/models/categoy-name-request.model';
+import { CategoryNameRequest } from '../../../features/category/models/Requests/categoy-name-request.model';
 import { CategoryService } from '../../../features/category/services/category.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Subscription } from 'rxjs';

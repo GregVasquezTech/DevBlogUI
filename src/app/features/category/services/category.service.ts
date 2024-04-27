@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AddCategoryRequest } from '../models/add-category-request.model';
-import { CategoryNameRequest } from '../models/categoy-name-request.model';
+import { AddCategoryRequest } from '../models/Requests/add-category-request.model';
+import { CategoryNameRequest } from '../models/Requests/categoy-name-request.model';
+import { CategoryResponse } from '../models/Responses/category-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,12 @@ export class CategoryService {
 
   }
 
-  getCategories(): Observable<AddCategoryRequest[]> {
-    return this._http.get<AddCategoryRequest[]>('https://localhost:44354/api/DevBlog');
+  getCategories(): Observable<CategoryResponse[]> {
+    return this._http.get<CategoryResponse[]>('https://localhost:44354/api/DevBlog');
   }
 
-  getCategory(model: CategoryNameRequest): Observable<void> {
-    return this._http.get<void>(`https://localhost:44354/api/DevBlog/${model}`);
+  getCategory(model: CategoryNameRequest): Observable<CategoryResponse> {
+    return this._http.get<CategoryResponse>(`https://localhost:44354/api/DevBlog/${model}`);
   }
 
   addCategory(model: AddCategoryRequest): Observable<void> {
