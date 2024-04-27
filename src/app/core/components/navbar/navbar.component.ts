@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CategoryNameRequest } from '../../../features/category/models/Requests/categoy-name-request.model';
 import { CategoryService } from '../../../features/category/services/category.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormsModule } from '@angular/forms';
+import { CategoryResponse } from '../../../features/category/models/Responses/category-response.model';
 
 @Component({
   selector: 'app-navbar',
@@ -15,36 +15,33 @@ import { FormBuilder, FormsModule } from '@angular/forms';
 })
 export class NavbarComponent implements OnInit, OnDestroy{
 
-  private _addCategorySubscription?: Subscription;
+  private _getCategorySubscription?: Subscription;
 
-  model: CategoryNameRequest;
-
-  searchForm = this._fb.nonNullable.group({
-    model: ''
-  })
+  getCategoryRequest: string;
+  modelResponse!: CategoryResponse;
 
   constructor (
     private _categoryService: CategoryService,
     private _fb: FormBuilder
   ){
-    this.model = {
-      name: ''
-    }
+    this.getCategoryRequest = ''
   }
 
   ngOnInit(): void {
   }
 
   onFormSubmit(): void {
-    this._addCategorySubscription = this._categoryService.getCategory(this.model)
+    this._getCategorySubscription = this._categoryService.getCategory(this.getCategoryRequest)
     .subscribe({
-      next: (response) => console.log("Successful search!", response),
+      next: (response) => {
+        this.modelResponse = response;
+        console.log("Successful search!", response);
+      },
       error: (error) => console.log("Fail to search category", error)
     });
   }
 
   ngOnDestroy(): void {
-    this._addCategorySubscription?.unsubscribe()
+    this._getCategorySubscription?.unsubscribe()
   }
-
 }

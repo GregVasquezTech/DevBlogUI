@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
-import { CategoryNameRequest } from '../models/Requests/categoy-name-request.model';
 import { CategoryResponse } from '../models/Responses/category-response.model';
 
 @Component({
@@ -12,15 +11,13 @@ import { CategoryResponse } from '../models/Responses/category-response.model';
 })
 export class GetCategoryComponent implements OnInit, OnDestroy{
 
-  modelRequest: CategoryNameRequest;
+  modelRequest: string;
   modelResponse: CategoryResponse;
 
   constructor (
     private _categoryService: CategoryService
   ) {
-    this.modelRequest = {
-      name: ''
-    };
+    this.modelRequest = ''
     this,this.modelResponse = {
       name: '',
       urlHandle: ''
