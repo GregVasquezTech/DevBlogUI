@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { CategoryResponse } from '../models/Responses/category-response.model';
+import { NavbarComponent } from '../../../core/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-get-category',
@@ -18,7 +19,7 @@ export class GetCategoryComponent implements OnInit, OnDestroy{
     private _categoryService: CategoryService
   ) {
     this.modelRequest = ''
-    this,this.modelResponse = {
+    this.modelResponse = {
       name: '',
       urlHandle: ''
     }

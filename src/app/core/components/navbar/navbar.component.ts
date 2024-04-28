@@ -1,47 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CategoryService } from '../../../features/category/services/category.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { FormBuilder, FormsModule } from '@angular/forms';
-import { CategoryResponse } from '../../../features/category/models/Responses/category-response.model';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, HttpClientModule, FormsModule],
+  imports: [RouterLink, HttpClientModule, FormsModule, ReactiveFormsModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit, OnDestroy{
+export class NavbarComponent{
 
-  private _getCategorySubscription?: Subscription;
+  searchValue: string = '';
 
-  getCategoryRequest: string;
-  modelResponse!: CategoryResponse;
+  searchForm = new FormGroup({
+    searchName: new FormControl() 
+  });
 
-  constructor (
-    private _categoryService: CategoryService,
-    private _fb: FormBuilder
-  ){
-    this.getCategoryRequest = ''
-  }
-
-  ngOnInit(): void {
-  }
-
-  onFormSubmit(): void {
-    this._getCategorySubscription = this._categoryService.getCategory(this.getCategoryRequest)
-    .subscribe({
-      next: (response) => {
-        this.modelResponse = response;
-        console.log("Successful search!", response);
-      },
-      error: (error) => console.log("Fail to search category", error)
-    });
-  }
-
-  ngOnDestroy(): void {
-    this._getCategorySubscription?.unsubscribe()
+  getSearchValue(): string {
+    let searchName = this.searchForm.get('searchName')?.value;
+    console.log(`Input is ${searchName}`);
+    return this.searchForm.get('searchName')?.value;
   }
 }

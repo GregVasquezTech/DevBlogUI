@@ -18,9 +18,9 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex" role="search" (ngSubmit)="onFormSubmit()">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="getCategoryRequest">
-          <button class="btn btn-outline-success" type="submit" [routerLink]="['/admin/categories/:get']">Search</button>
+        <form class="d-flex" role="search" [formGroup]="searchForm">
+          <input class="form-control me-2" type="text" #searchValue placeholder="Search" aria-label="Search" formControlName="searchName">
+          <button class="btn btn-outline-success" type="submit" (click)="getSearchValue()" [routerLink]="['/admin/categories/:get']">Search</button>
         </form>
       </div>
     </div>

@@ -9,7 +9,9 @@ import { CategoryResponse } from '../models/Responses/category-response.model';
 })
 export class CategoryService {
 
-  constructor(private _http: HttpClient) { 
+  constructor(
+    private _http: HttpClient
+  ) { 
 
   }
 
